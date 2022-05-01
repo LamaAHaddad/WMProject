@@ -15,6 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('cms/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('cms/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('cms/plugins/toastr/toastr.min.css')}}">
   @yield('styles')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -195,7 +196,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -218,14 +219,325 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+          <li class="nav-header">{{__('cms.hr')}}</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
+              <i class="nav-icon far fa-envelope"></i>
+              <p>{{__('cms.store')}}
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview" style="display: block; height: 129.562px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+              <li class="nav-item">
+                <a href="{{route('users.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('users.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon far fa-envelope"></i>
+                <p>{{__('cms.admin')}}
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+            <ul class="nav nav-treeview" style="display: block; height: 129.562px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+              <li class="nav-item">
+                <a href="{{route('admins.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admins.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-header">{{__('cms.content_management')}}</li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>{{__('cms.cities')}}
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block; height: 129.562px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+              <li class="nav-item">
+                <a href="{{route('cities.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('cities.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-envelope"></i>
+              <p>{{__('cms.stocks')}}
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: block; height: 129.562px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+              <li class="nav-item">
+                <a href="{{route('stocks.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('stocks.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+          </li> --}}
+          <li class="nav-header">{{__('cms.hr')}}</li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                {{__('cms.store')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('users.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('users.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                {{__('cms.admin')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('admins.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('admins.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                {{__('cms.distributor')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('users.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('users.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-header">{{__('cms.content_management')}}</li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                {{__('cms.city')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('cities.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('cities.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                {{__('cms.car')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('cars.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('cars.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                {{__('cms.stock')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('stocks.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('stocks.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                {{__('cms.product')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('products.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('products.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                {{__('cms.category')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('categories.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('categories.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                {{__('cms.sub_category')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('sub_categories.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('sub_categories.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                {{__('cms.invoice')}}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('invoices.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.create')}}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('invoices.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{__('cms.index')}}</p>
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
@@ -233,7 +545,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <!-- /.sidebar -->
   </aside>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -284,10 +595,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <!-- jQuery -->
 <script src="{{asset('cms/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('cms/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('cms/dist/js/adminlte.min.js')}}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{{asset('cms/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{asset('cms/dist/js/adminlte.min.js')}}"></script>
+
+  {{-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> --}}
+  <script src="https://unpkg.com/axios@0.27.2/dist/axios.min.js"></script>
+  <script src="{{asset('cms/plugins/toastr/toastr.min.js')}}"></script>
 @yield('scripts')
 </body>
 
