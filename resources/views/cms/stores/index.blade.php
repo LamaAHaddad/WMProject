@@ -25,29 +25,26 @@
                     <th style="width: 10px">#</th>
                     <th>{{__('cms.name')}}</th>
                     <th>{{__('cms.email')}}</th>
-                    <th>{{__('cms.city')}}</th>
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
                     <th style="width: 40px">{{__('cms.settings')}}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($users as $user)
+                  @foreach ($stores as $store)
                   <tr>
-                    <td>{{$user->id}}</td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->city->name}}</td>
-                    <td>{{$user->created_at}}</td>
-                    <td>{{$user->updated_at}}</td>
+                    <td>{{$store->id}}</td>
+                    <td>{{$store->name}}</td>
+                    <td>{{$store->email}}</td>
+                    <td>{{$store->created_at}}</td>
+                    <td>{{$store->updated_at}}</td>
                     <td>
                       <div class="btn-group">
-                        <a href="{{route('users.edit',$user->id)}}" type="button" class="btn btn-warning btn-circle">
+                        <a href="{{route('stores.edit',$store->id)}}" type="button" class="btn btn-warning btn-circle">
                           <i class="fas fa-edit"></i>
                         </a>
-                          <a href="#" onclick="confirmDelete('{{$user->id}}' , this)" class="btn btn-danger btn-circle">
+                          <a href="#" onclick="confirmDelete('{{$store->id}}' , this)" class="btn btn-danger btn-circle">
                             <i class="fas fa-trash"></i>
-                          </a>
                           </a>
                       </div>
                     </td>
@@ -90,7 +87,7 @@
     })
   }
   function performDelete(id , reference){
-    axios.delete('/cms/admin/users/'+id)
+    axios.delete('/cms/store/stores/'+id)
       .then(function (response) {
             console.log(response);
             reference.closest('tr').remove();
@@ -98,6 +95,7 @@
         })
         .catch(function (error) {
             console.log(error.response);
+            // toastr.error(error.response.data.message);
             showMessage(error.response.data);
         });
   }

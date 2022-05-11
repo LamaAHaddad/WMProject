@@ -35,13 +35,15 @@
                   <tr>
                     <td>{{$car->id}}</td>
                     <td>{{$car->name}}</td>
+                    {{-- <td><span class="badge @if($car->active) bg-success @else bg-danger @endif">{{$car->active_status}}</span></td> --}}
                     <td><span class="badge @if($car->active) bg-success @else bg-danger @endif">{{$car->active_status}}</span></td>
                     <td>{{$car->created_at}}</td>
                     <td>{{$car->updated_at}}</td>
                     <td>
                       <div class="btn-group">
                         <a href="{{route('cars.edit',$car->id)}}" type="button" class="btn btn-warning btn-circle">
-                          <i class="fas fa-edit"></i>
+                          {{-- <i class="fas fa-edit"></i> --}}
+                          <i class="fas fa-pencil-alt"></i>
                         </a>
                           <a href="#" onclick="confirmDelete('{{$car->id}}' , this)" class="btn btn-danger btn-circle">
                             <i class="fas fa-trash"></i>

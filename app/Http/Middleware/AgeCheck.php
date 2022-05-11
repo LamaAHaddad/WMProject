@@ -14,8 +14,11 @@ class AgeCheck
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, ...$age)
     {
+        if ($age < 18) {
+            abort(403, 'Age restrictions');
+        }
         return $next($request);
     }
 }

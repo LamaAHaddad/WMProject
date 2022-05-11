@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CarController extends Controller
 {
+    public function __construct(){
+        $this->authorizeResource(Car::class,'car');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,11 +45,13 @@ class CarController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
+            'active' => 'nullable|string|in:on',
         ]);
 
         if (!$validator->fails()) {
             $cars = new Car();
             $cars->name = $request->input('name');
+            $cars->active = $request->has('active');
             $isSaved = $cars->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
@@ -94,10 +99,12 @@ class CarController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50,'.$car->id,
+            'active' => 'nullable|string|in:on'
         ]);
 
         if(!$validator->fails()){
             $car->name=$request->input('name');
+            $car->active = $request->has('active');
             $isSaved=$car->save();
             return response()->json(
                 ['message'=>$isSaved ? 'Updated Successfully' : 'Update Failed!'],

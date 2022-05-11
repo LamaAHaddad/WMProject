@@ -47,7 +47,7 @@
             <!-- /.card-body -->
 
             <div class="card-footer">
-              <button type="button" onclick="performUpdate('{{$user->id}}')" class="btn btn-primary">{{__('cms.save')}}</button>
+              <button type="button" onclick="performUpdate('{{$store->id}}')" class="btn btn-primary">{{__('cms.save')}}</button>
           </div>
           </form>
         </div>
@@ -65,7 +65,7 @@
 <script>
    function performUpdate()
    {
-    axios.put('/cms/admin/users/{{$user->id}}', {
+    axios.put('/cms/admin/stores/{{$store->id}}', {
        name: document.getElementById('name').value,
        email_address: document.getElementById('email').value,
        city_id: document.getElementById('city_id').value
@@ -73,8 +73,7 @@
       .then(function (response) {
             console.log(response);
             toastr.success(response.data.message);
-            window.location.href = '/cms/admin/users';
-            // document.getElementById('create-form').reset();
+            window.location.href = '/cms/admin/stores';
         })
         .catch(function (error) {
             console.log(error.response);

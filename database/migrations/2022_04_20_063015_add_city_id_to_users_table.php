@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->foreignId('city_id')->after('email')->constrained();
+            $table->foreignId('car_id')->after('email')->constrained();
         });
     }
 
@@ -28,8 +28,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->dropForeign('user_city_id_forign');
-            $table->dropColumn('city_id');
+            $table->dropForeign('user_car_id_forign');
+            $table->dropColumn('car_id');
         });
     }
 };

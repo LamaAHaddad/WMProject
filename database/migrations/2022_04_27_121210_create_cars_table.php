@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name',45);
             $table->boolean('active')->default(true);
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

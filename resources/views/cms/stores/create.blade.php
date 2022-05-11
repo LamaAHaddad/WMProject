@@ -1,9 +1,9 @@
 @extends('cms.parent')
 
 @section('title',__('cms.stores'))
-@section('page-lg',__('cms.create'))
+@section('page-lg',__('cms.edit'))
 @section('main-pg-md',__('cms.stores'))
-@section('page-md',__('cms.create'))
+@section('page-md',__('cms.edit'))
 
 @section('styles')
   
@@ -20,7 +20,7 @@
         <!-- general form elements -->
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">{{__('cms.create_store')}}</h3>
+            <h3 class="card-title">{{__('cms.edit_store')}}</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -38,10 +38,6 @@
               <div class="form-group">
                 <label for="name">{{__('cms.name')}}</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{old('cms.name')}}">
-              </div>
-              <div class="form-group">
-                <label for="email">{{__('cms.email')}}</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="{{__('cms.email')}}" value="{{old('cms.email')}}">
               </div>
             </div>
             <!-- /.card-body -->
@@ -65,9 +61,8 @@
 <script>
    function performStore()
    {
-    axios.post('/cms/admin/users', {
+    axios.post('/cms/admin/stores', {
        name: document.getElementById('name').value,
-       email_address: document.getElementById('email').value,
        city_id: document.getElementById('city_id').value
       })
       .then(function (response) {

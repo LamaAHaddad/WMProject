@@ -24,29 +24,37 @@
                   <tr>
                     <th style="width: 10px">#</th>
                     <th>{{__('cms.name')}}</th>
-                    {{-- <th>{{__('cms.active')}}</th> --}}
+                    <th>{{__('cms.email')}}</th>
+                    <th>{{__('cms.car')}}</th>
+                    <th>{{__('cms.permissions')}}</th>
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
                     <th style="width: 40px">{{__('cms.settings')}}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($distributors as $distributor)
+                  @foreach ($users as $user)
                   <tr>
-                    <td>{{$distributor->id}}</td>
-                    <td>{{$distributor->name}}</td>
-                    {{-- <td><span class="badge @if($car->active) bg-success @else bg-danger @endif">{{$car->active_status}}</span></td> --}}
-                    <td>{{$distributor->created_at}}</td>
-                    <td>{{$distributor->updated_at}}</td>
+                    <td>{{$user->id}}</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->car>name}}</td>
+                    <td>
+                      <a href="{{route('user.edit-permissions',$user->id)}}" class="btn btn-app bg-info">
+                        <i class="fas fa-envelope"></i> {{$user->permissions_count}}
+                    </a>
+                    </td>
+                    <td>{{$user->created_at}}</td>
+                    <td>{{$user->updated_at}}</td>
                     <td>
                       <div class="btn-group">
-                        <a href="{{route('cars.edit',$distributor->id)}}" type="button" class="btn btn-warning btn-circle">
+                        <a href="{{route('users.edit',$user->id)}}" type="button" class="btn btn-warning btn-circle">
                           <i class="fas fa-edit"></i>
                         </a>
-                          <a href="#" onclick="confirmDelete('{{$distributor->id}}' , this)" class="btn btn-danger btn-circle">
+                          <a href="#" onclick="confirmDelete('{{$user->id}}' , this)" class="btn btn-danger btn-circle">
                             <i class="fas fa-trash"></i>
                           </a>
-                        </form>
+                          </a>
                       </div>
                     </td>
                   </tr>
@@ -88,7 +96,7 @@
     })
   }
   function performDelete(id , reference){
-    axios.delete('/cms/admin/distributors/'+id)
+    axios.delete('/cms/admin/users/'+id)
       .then(function (response) {
             console.log(response);
             reference.closest('tr').remove();
@@ -99,6 +107,7 @@
             showMessage(error.response.data);
         });
   }
+
   function showMessage(data){
     Swal.fire(
       data.title,

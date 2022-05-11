@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SubCategoryController extends Controller
 {
+    public function __construct(){
+        $this->authorizeResource(SubCategory::class,'sub_category');
+    }
     /**
      * Display a listing of the resource.
      *

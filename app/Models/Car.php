@@ -9,7 +9,11 @@ class Car extends Model
 {
     use HasFactory;
     public function products(){
-        return $this->belongsToMany(Product::class,'product_id','id');
+        return $this->belongsToMany(Product::class,'car_id','id');
+    }
+
+    public function users(){
+        return $this->belongsTo(User::class,'user_id','id');
     }
     public function getActiveStatusAttribute(){
         return $this->active ? 'Active' : ' InActive';

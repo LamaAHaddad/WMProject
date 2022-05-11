@@ -28,6 +28,14 @@
             @csrf
             <div class="card-body">
               <div class="form-group">
+                <label>{{__('cms.roles')}}</label>
+                <select class="form-control" id="role_id">
+                  @foreach ($roles as $role )
+                  <option value="{{$role->id}}">{{$role->name}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group">
                 <label for="name">{{__('cms.name')}}</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{$admin->name}}">
               </div>
@@ -60,6 +68,7 @@
     axios.put('/cms/admin/admins/{{$admin->id}}', {
        name: document.getElementById('name').value,
        email_address: document.getElementById('email').value,
+       role_id: document.getElementById('role_id').value,
       })
       .then(function (response) {
             console.log(response);

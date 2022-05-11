@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserWelcomEmail;
+use App\Models\Car;
 use App\Models\City;
 use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Spatie\FlareClient\Http\Response as HttpResponse;
+use Spatie\Permission\Models\Permission;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
@@ -20,8 +24,50 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users=User::with('city')->get();
-        return response()->view('cms.stores.index', ['users' => $users]);
+        $users=User::with('car')->withCount('permissions')->get();
+        return response()->view('cms.users.index', ['users' => $users]);
+    }
+
+    public function editUserPermissions(Request $request,User $user){
+        $permissions = Permission::where('guard_name', '=' , $user->guard_name)->get();
+
+        $rolePermissions = $user->permissions;
+        if (count($rolePermissions) > 0) {
+            foreach ($permissions as $permission) {
+                $permission->setAttribute('assigned', false);
+                foreach ($rolePermissions as $rolePermission) {
+                    if ($permission->id == $rolePermission->id) {
+                        $permission->setAttribute('assigned', true);
+                    }
+                }
+            }
+        }
+        return response()->view('cms.users.user-permission', ['user'=>$user, 'permissions'=>$permissions]);
+    }
+
+    public function updateRolePermissions(Request $request,User $user){
+        $validator = Validator($request->all(),[
+            'permission_id'=>'required|numeric|exists:permissions,id',
+        ]);
+
+        if(! $validator->fails()){
+            $permission= Permission::findOrFail($request->input('permission_id'));
+            if($user->hasPermissionTo($permission)){
+                $user->revokePermissionTo($permission);
+            }
+            else{
+                $user->givePermissionTo($permission);
+            }
+            return response()->json(
+                ['message'=>'User Updated Successfully'],
+                Response::HTTP_OK
+            );
+        }else{
+            return response()->json(
+                ['message'=>$validator->getMessageBag()->first()],
+                Response::HTTP_BAD_REQUEST
+            );
+        }
     }
 
     /**
@@ -32,8 +78,8 @@ class UserController extends Controller
     public function create()
     {
         //
-        $cities=City::where('active','=',true)->get();
-        return response()->view('cms.stores.create',['cities'=>$cities]);
+        $cars=Car::where('active','=',true)->get();
+        return response()->view('cms.users.create',['cars'=>$cars]);
     }
 
     /**
@@ -48,7 +94,7 @@ class UserController extends Controller
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
             'email_address' => 'required|email|unique:users,email',
-            'city_id' => 'required|numeric|exists:cities,id',
+            'car_id' => 'required|numeric|exists:cars,id',
         ]);
 
         if (!$validator->fails()) {
@@ -56,8 +102,11 @@ class UserController extends Controller
             $user->name = $request->input('name');
             $user->email = $request->input('email_address');
             $user->password = Hash::make('password');
-            $user->city_id = $request->input('city_id');
+            $user->car_id = $request->input('car_id');
             $isSaved = $user->save();
+            if($isSaved){
+                Mail::to($user)->send(new UserWelcomEmail($user));
+            }
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
             ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);
@@ -89,8 +138,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
-        $cities = City::where('active', '=', true)->get();
-        return response()->view('cms.stores.edit', ['user' => $user, 'cities' => $cities]);
+        $cars = Car::where('active', '=', true)->get();
+        return response()->view('cms.users.edit', ['user' => $user, 'cars' => $cars]);
     }
 
     /**
@@ -106,13 +155,13 @@ class UserController extends Controller
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50',
             'email_address'=>'required|email|max:40|unique:users,email,'.$user->id,
-            'city_id'=>'required|numeric|exists:cities,id',
+            'car_id'=>'required|numeric|exists:cars,id',
         ]);
 
         if(!$validator->fails()){
             $user->name=$request->input('name');
             $user->email=$request->input('email_address');
-            $user->city_id=$request->input('city_id');
+            $user->city_id=$request->input('car_id');
             $isSaved=$user->save();
             return response()->json(
                 ['message'=>$isSaved ? 'Updated Successfully' : 'Update Failed!'],

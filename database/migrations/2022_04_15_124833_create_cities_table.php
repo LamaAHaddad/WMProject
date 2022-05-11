@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name',45);
             $table->boolean('active')->default(true);
+            $table->foreignId('stock_id')->constrained();
+            $table->foreignId('store_id')->constrained();
             $table->timestamps();
         });
     }

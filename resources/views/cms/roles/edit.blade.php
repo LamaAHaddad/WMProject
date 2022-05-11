@@ -1,9 +1,9 @@
 @extends('cms.parent')
 
-@section('title',__('cms.distributors'))
-@section('page-lg',__('cms.create'))
-@section('main-pg-md',__('cms.distributors'))
-@section('page-md',__('cms.create'))
+@section('title',__('cms.update_role'))
+@section('page-lg',__('cms.roles'))
+@section('main-pg-md',__('cms.update_role'))
+@section('page-md',__('cms.update_role'))
 
 @section('styles')
   
@@ -20,7 +20,7 @@
         <!-- general form elements -->
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">{{__('cms.create_distributor')}}</h3>
+            <h3 class="card-title">{{__('cms.update_role')}}</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -28,18 +28,21 @@
             @csrf
             <div class="card-body">
               <div class="form-group">
-                <label for="name">{{__('cms.name')}}</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{old('cms.name')}}">
+                <label>{{__('cms.user_type')}}</label>
+                <select class="form-control" id="guard_name">
+                  <option value="admin" @if ($role->guard_name == 'admin') selected @endif>{{__('cms.admin')}}</option>
+                  <option value="user" @if ($role->guard_name == 'user') selected @endif>{{__('cms.store')}}</option>
+                </select>
               </div>
-              {{-- <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                <input type="checkbox" class="custom-control-input" id="active" name="active">
-                <label class="custom-control-label" for="active">{{__('cms.active')}}</label>
-              </div> --}}
+              <div class="form-group">
+                <label for="name">{{__('cms.name')}}</label>
+                <input type="text" class="form-control" id="name" value="{{$role->name}}" placeholder="{{__('cms.name')}}">
+              </div>
             </div>
             <!-- /.card-body -->
 
             <div class="card-footer">
-              <button type="button" onclick="performStore()" class="btn btn-primary">{{__('cms.save')}}</button>
+              <button type="button" onclick="performUpdate()" class="btn btn-primary">{{__('cms.save')}}</button>
             </div>
           </form>
         </div>
@@ -55,16 +58,15 @@
 @section('scripts')
 <script src="{{asset('cms/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <script>
-   function performStore()
-   {
-    axios.post('/cms/admin/distributors', {
-       name: document.getElementById('name').value,
-      //  email_address: document.getElementById('email').value,
-      })
-      .then(function (response) {
+    function performUpdate() {
+        axios.put('/cms/admin/roles/{{$role->id}}', {
+            name: document.getElementById('name').value,
+            guard_name: document.getElementById('guard_name').value,
+        })
+        .then(function (response) {
             console.log(response);
             toastr.success(response.data.message);
-            document.getElementById('create-form').reset();
+            window.location.href = '/cms/admin/roles'
         })
         .catch(function (error) {
             console.log(error.response);

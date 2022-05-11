@@ -40,7 +40,7 @@
                     <td>{{$subCategory->updated_at}}</td>
                     <td>
                       <div class="btn-group">
-                        <a href="{{route('categories.edit',$subCategory->id)}}" type="button" class="btn btn-warning btn-circle">
+                        <a href="{{route('sub_categories.edit',$subCategory->id)}}" type="button" class="btn btn-warning btn-circle">
                           <i class="fas fa-edit"></i>
                         </a>
                           <a href="#" onclick="confirmDelete('{{$subCategory->id}}' , this)" class="btn btn-danger btn-circle">
@@ -88,7 +88,7 @@
     })
   }
   function performDelete(id , reference){
-    axios.delete('/cms/admin/subCategories/'+id)
+    axios.delete('/cms/admin/sub_categories/'+id)
       .then(function (response) {
             console.log(response);
             reference.closest('tr').remove();
@@ -107,5 +107,4 @@
       )
   }
 </script>
-  
 @endsection

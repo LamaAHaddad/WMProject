@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class StockController extends Controller
 {
+    public function __construct(){
+        $this->authorizeResource(Stock::class,'stock');
+    }
     /**
      * Display a listing of the resource.
      *

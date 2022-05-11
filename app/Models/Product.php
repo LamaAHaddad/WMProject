@@ -17,4 +17,10 @@ class Product extends Model
     public function invoices(){
         return $this->belongsTo(Invoice::class,'invoice_id','id');
     }
+    public function users(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+    public function stocks(){
+        return $this->belongsTo(Stock::class,'stock_id','id');
+    }
 }

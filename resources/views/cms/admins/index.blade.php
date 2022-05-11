@@ -25,6 +25,7 @@
                     <th style="width: 10px">#</th>
                     <th>{{__('cms.name')}}</th>
                     <th>{{__('cms.email')}}</th>
+                    <th>{{__('cms.role')}}</th>
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
                     <th style="width: 40px">{{__('cms.settings')}}</th>
@@ -36,6 +37,7 @@
                     <td>{{$admin->id}}</td>
                     <td>{{$admin->name}}</td>
                     <td>{{$admin->email}}</td>
+                    <td>{{$admin->roles[0]->name}}</td>
                     <td>{{$admin->created_at}}</td>
                     <td>{{$admin->updated_at}}</td>
                     <td>

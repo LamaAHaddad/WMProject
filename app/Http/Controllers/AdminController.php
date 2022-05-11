@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Admin::class,'admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,7 @@ class AdminController extends Controller
     public function index()
     {
         //
-        $admins = Admin::all();
+        $admins = Admin::with('roles')->get();
         return response()->view('cms.admins.index',['admins'=>$admins]);
     }
 
@@ -29,7 +34,8 @@ class AdminController extends Controller
     public function create()
     {
         //
-        return response()->view('cms.admins.create');
+        $roles = Role::where('guard_name','=','admin')->get();
+        return response()->view('cms.admins.create',['roles'=>$roles]);
     }
 
     /**
@@ -42,8 +48,9 @@ class AdminController extends Controller
     {
         //
         $validator = Validator($request->all(), [
-            'name' => 'required|string|min:3',
-            'email' => 'required|email|unique:admins,email',
+            'name'=>'required|string|min:3',
+            'email'=>'required|email|unique:admins,email',
+            'role_id'=>'required|numeric|exists:roles,id',
         ]);
 
         if (!$validator->fails()) {
@@ -52,6 +59,7 @@ class AdminController extends Controller
             $admin->email = $request->input('email');
             $admin->password = Hash::make(12345);
             $isSaved = $admin->save();
+            if ($isSaved) $admin->assignRole(Role::findOrFail($request->input('role_id')));
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
             ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);
@@ -83,7 +91,8 @@ class AdminController extends Controller
     public function edit(Admin $admin)
     {
         //
-         return response()->view('cms.admins.edit',['admin' => $admin]);
+        $roles = Role::where('guard_name','=','admin')->get();
+         return response()->view('cms.admins.edit',['admin' => $admin, 'roles'=>$roles]);
     }
 
     /**
@@ -99,12 +108,15 @@ class AdminController extends Controller
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50',
             'email_address'=>'required|email|max:40|unique:users,email,'.$admin->id,
+            'role_id'=>'required|numeric|exists:roles,id',
         ]);
 
         if(!$validator->fails()){
             $admin->name=$request->input('name');
             $admin->email=$request->input('email_address');
             $isSaved=$admin->save();
+            if ($isSaved) 
+            $admin->syncRoles(Role::findOrFail($request->input('role_id')));
             return response()->json(
                 ['message'=>$isSaved ? 'Updated Successfully' : 'Update Failed!'],
                 $isSaved ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST
@@ -132,11 +144,5 @@ class AdminController extends Controller
         ],
             $deleted ? Response::HTTP_OK :Response::HTTP_BAD_REQUEST
         );
-
-        // $deleted = $admin->delete();
-        // return response()->json(
-        //     ['message' => $deleted ? 'Deleted successfully' : 'Delete failed!'],
-        //     $deleted ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST
-        // );
     }
 }
