@@ -48,9 +48,9 @@ class CategoryController extends Controller
         ]);
 
         if (!$validator->fails()) {
-            $categories = new Category();
-            $categories->name = $request->input('name');
-            $isSaved = $categories->save();
+            $category = new Category();
+            $category->name = $request->input('name');
+            $isSaved = $category->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
             ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);

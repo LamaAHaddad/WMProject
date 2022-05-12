@@ -59,12 +59,12 @@ Route::prefix('cms/admin')->middleware(['auth:admin,user', 'verified'])->group(f
     Route::resource('invoices',InvoiceController::class);
     Route::resource('stores',StoreController::class);
 
-    // Route::get('logout',[AuthController::class,'logout'])->name('cms.logout');
-});
-
-Route::prefix('cms/admin')->middleware(['auth:admin', 'verified'])->group(function () {
     Route::get('logout',[AuthController::class,'logout'])->name('cms.logout');
 });
+
+// Route::prefix('cms/admin')->middleware(['auth:admin', 'verified'])->group(function () {
+//     Route::get('logout',[AuthController::class,'logout'])->name('cms.logout');
+// });
 
 Route::prefix('cms/admin')->middleware(['auth:admin', 'verified'])->group(function () {
     Route::resource('admins',AdminController::class);

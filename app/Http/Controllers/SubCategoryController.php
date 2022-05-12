@@ -48,9 +48,9 @@ class SubCategoryController extends Controller
         ]);
 
         if (!$validator->fails()) {
-            $subCategories = new SubCategory();
-            $subCategories->name = $request->input('name');
-            $isSaved = $subCategories->save();
+            $subCategory = new SubCategory();
+            $subCategory->name = $request->input('name');
+            $isSaved = $subCategory->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
             ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);

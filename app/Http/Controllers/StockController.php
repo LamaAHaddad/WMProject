@@ -50,9 +50,9 @@ class StockController extends Controller
         ]);
 
         if (!$validator->fails()) {
-            $stocks = new Stock();
-            $stocks ->name = $request->input('name');
-            $isSaved = $stocks ->save();
+            $stock = new Stock();
+            $stock ->name = $request->input('name');
+            $isSaved = $stock ->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
             ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);

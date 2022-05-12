@@ -35,7 +35,6 @@
                   <tr>
                     <td>{{$car->id}}</td>
                     <td>{{$car->name}}</td>
-                    {{-- <td><span class="badge @if($car->active) bg-success @else bg-danger @endif">{{$car->active_status}}</span></td> --}}
                     <td><span class="badge @if($car->active) bg-success @else bg-danger @endif">{{$car->active_status}}</span></td>
                     <td>{{$car->created_at}}</td>
                     <td>{{$car->updated_at}}</td>

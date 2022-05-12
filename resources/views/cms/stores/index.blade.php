@@ -24,7 +24,7 @@
                   <tr>
                     <th style="width: 10px">#</th>
                     <th>{{__('cms.name')}}</th>
-                    <th>{{__('cms.email')}}</th>
+                    <th>{{__('cms.city')}}</th>
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
                     <th style="width: 40px">{{__('cms.settings')}}</th>
@@ -35,7 +35,7 @@
                   <tr>
                     <td>{{$store->id}}</td>
                     <td>{{$store->name}}</td>
-                    <td>{{$store->email}}</td>
+                    <td>{{$store->city->name}}</td>
                     <td>{{$store->created_at}}</td>
                     <td>{{$store->updated_at}}</td>
                     <td>

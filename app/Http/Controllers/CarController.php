@@ -49,10 +49,10 @@ class CarController extends Controller
         ]);
 
         if (!$validator->fails()) {
-            $cars = new Car();
-            $cars->name = $request->input('name');
-            $cars->active = $request->has('active');
-            $isSaved = $cars->save();
+            $car = new Car();
+            $car->name = $request->input('name');
+            $car->active = $request->has('active');
+            $isSaved = $car->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
             ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);

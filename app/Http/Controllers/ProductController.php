@@ -48,9 +48,9 @@ class ProductController extends Controller
         ]);
 
         if (!$validator->fails()) {
-            $products = new Product();
-            $products->name = $request->input('name');
-            $isSaved = $products->save();
+            $product = new Product();
+            $product->name = $request->input('name');
+            $isSaved = $product->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
             ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);

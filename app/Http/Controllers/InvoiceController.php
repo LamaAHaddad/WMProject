@@ -48,9 +48,9 @@ class InvoiceController extends Controller
         ]);
 
         if (!$validator->fails()) {
-            $invoices = new Invoice();
-            $invoices->name = $request->input('name');
-            $isSaved = $invoices->save();
+            $invoice = new Invoice();
+            $invoice->name = $request->input('name');
+            $isSaved = $invoice->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
             ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);

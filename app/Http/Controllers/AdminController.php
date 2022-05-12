@@ -59,7 +59,8 @@ class AdminController extends Controller
             $admin->email = $request->input('email');
             $admin->password = Hash::make(12345);
             $isSaved = $admin->save();
-            if ($isSaved) $admin->assignRole(Role::findOrFail($request->input('role_id')));
+            if ($isSaved)
+             $admin->assignRole(Role::findOrFail($request->input('role_id')));
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
             ], $isSaved ? Response::HTTP_CREATED : Response::HTTP_BAD_REQUEST);

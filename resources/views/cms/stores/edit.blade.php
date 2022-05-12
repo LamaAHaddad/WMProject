@@ -39,10 +39,10 @@
                 <label for="name">{{__('cms.name')}}</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{$user->name}}">
               </div>
-              <div class="form-group">
+              {{-- <div class="form-group">
                 <label for="email">{{__('cms.email')}}</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="{{__('cms.email')}}" value="{{$user->email}}">
-              </div>
+              </div> --}}
             </div>
             <!-- /.card-body -->
 

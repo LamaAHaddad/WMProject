@@ -20,7 +20,7 @@ class CityController extends Controller
     public function index()
     {
         //
-        $cities=City::withCount('users')->get();
+        $cities=City::withCount('stores')->get();
         return response()->view('cms.cities.index',['cities'=>$cities]);
     }
 
@@ -46,11 +46,13 @@ class CityController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
+            'active' => 'nullable|string|in:on',
         ]);
 
         if (!$validator->fails()) {
             $city = new city();
             $city->name = $request->input('name');
+            $city->active = $request->has('active');
             $isSaved = $city->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
@@ -61,23 +63,6 @@ class CityController extends Controller
                 Response::HTTP_BAD_REQUEST
             );
         }
-        // $request->validate([
-        //     'name'=> 'required|string|min:3|max:50',
-        //     // 'active'=>'nullable|string|in:on',
-        // ],[
-        //     'name.required'=>'Enter City Name',
-        // ]);
-
-        // $city=new City();
-        // $city->name = $request->input('name');
-        // // $city->active = $request->has('active');
-        // $isSaved=$city->save();
-
-        // if($isSaved){
-        //     session()->flash('message', 'City Created Successfully');
-        //     return redirect()->back();  
-        // }
-
     }
 
     /**
@@ -115,10 +100,12 @@ class CityController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50,'.$city->id,
+            'active' => 'nullable|string|in:on'
         ]);
 
         if(!$validator->fails()){
             $city->name=$request->input('name');
+            $city->active = $request->has('active');
             $isSaved=$city->save();
             return response()->json(
                 ['message'=>$isSaved ? 'Updated Successfully' : 'Update Failed!'],
@@ -128,18 +115,6 @@ class CityController extends Controller
         else{
             return response()->json(['message'=>$validator->getMessageBag()->first()], Response::HTTP_BAD_REQUEST);
         }
-        // $request->validate([
-        //     'name'=> 'required|string|min:3|max:50',
-        //     'active'=>'nullable|string|in:on',
-        // ]);
-
-        // $city->name = $request->input('name');
-        // $city->active = $request->has('active');
-        // $isSaved=$city->save();
-
-        // if($isSaved){
-        //     return redirect()->route('cities.index');  
-        // }
     }
 
     /**
@@ -151,11 +126,6 @@ class CityController extends Controller
     public function destroy(City $city)
     {
         //
-        // $deleted = $city->delete();
-        // return response()->json(
-        //     ['message' => $deleted ? 'Deleted successfully' : 'Delete failed!'],
-        //     $deleted ? Response::HTTP_OK : Response::HTTP_BAD_REQUEST
-        // );
         $deleted = $city->delete();
         return response()->json([
             'title' => $deleted ? 'Deleted!' : 'Delete Failed!',

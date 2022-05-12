@@ -74,7 +74,6 @@
             console.log(response);
             toastr.success(response.data.message);
             window.location.href = '/cms/admin/users';
-            // document.getElementById('create-form').reset();
         })
         .catch(function (error) {
             console.log(error.response);
