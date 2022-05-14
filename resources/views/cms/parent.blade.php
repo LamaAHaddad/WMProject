@@ -283,7 +283,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @canany(['Create-Admin', 'Read-Admins'])
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 {{__('cms.admin')}}
                 <i class="right fas fa-angle-left"></i>
@@ -312,7 +312,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @canany(['Create-Store', 'Read-Stores'])
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-store"></i>
               <p>
                 {{__('cms.store')}}
                 <i class="right fas fa-angle-left"></i>
@@ -348,7 +348,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @canany(['Create-City', 'Read-Cities'])
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-city"></i>
               <p>
                 {{__('cms.city')}}
                 <i class="right fas fa-angle-left"></i>
@@ -377,7 +377,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @canany(['Create-Car', 'Read-Cars'])
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-car"></i>
               <p>
                 {{__('cms.car')}}
                 <i class="right fas fa-angle-left"></i>
@@ -406,7 +406,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @canany(['Create-Stock', 'Read-Stocks'])
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-store"></i>
               <p>
                 {{__('cms.stock')}}
                 <i class="right fas fa-angle-left"></i>
@@ -435,7 +435,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @canany(['Create-Product', 'Read-Products'])
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-barcode"></i>
+              {{-- <i class="fas fa-barcode"></i> --}}
               <p>
                 {{__('cms.product')}}
                 <i class="right fas fa-angle-left"></i>
@@ -522,7 +523,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @canany(['Create-Invoice', 'Read-Invoices'])
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-receipt"></i>
               <p>
                 {{__('cms.invoice')}}
                 <i class="right fas fa-angle-left"></i>
@@ -552,14 +553,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-header">{{__('cms.settings')}}</li>
           <li class="nav-item">
             <a href="{{route('password.edit')}}" class="nav-link">
-              <i class="nav-icon far fa-circle text-danger"></i>
+              <i class="nav-icon fas fa-pen"></i>
               <p class="text">{{__('cms.edit_password')}}</p>
             </a>
           </li>
           <li class="nav-item">
             <a href="{{route('cms.logout')}}" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>
-              <p class="text">{{__('cms.logout')}}</p>
+              <p class="text">{{__('cms.logout'
+              // ,session('guard')
+              )}}</p>
             </a>
           </li>
         </ul>

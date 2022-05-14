@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
-            $table->id();
-            $table->string('name',45);
-            $table->boolean('active')->default(true);
-            $table->integer('quality');
-            $table->integer('price');
-            $table->timestamps();
+        Schema::table('stores', function (Blueprint $table) {
+            //
+            $table->foreignId('city_id')->constrained();
+
         });
     }
 
@@ -30,6 +27,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::table('stores', function (Blueprint $table) {
+            //
+            $table->dropForeign('stores_city_id_foreign');
+            $table->dropColumn('city_id');
+        });
     }
 };

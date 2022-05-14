@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     use HasFactory;
-    public function stores(){
+    public function store(){
         return $this->hasMany(Store::class,'city_id','id');
     }
-    public function stocks(){
+    public function stock(){
         return $this->hasMany(Stock::class,'city_id','id');
     }
     public function getActiveStatusAttribute(){

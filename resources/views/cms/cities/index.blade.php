@@ -24,7 +24,7 @@
                   <tr>
                     <th style="width: 10px">#</th>
                     <th>{{__('cms.name')}}</th>
-                    <th>{{__('cms.stores')}}
+                    {{-- <th>{{__('cms.stores')}} --}}
                     <th>{{__('cms.active')}}</th>
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
@@ -36,7 +36,7 @@
                   <tr>
                     <td>{{$city->id}}</td>
                     <td>{{$city->name}}</td>
-                    <td><span class="badge bg-success">{{$city->stores_count}}</span></td>
+                    {{-- <td><span class="badge bg-success">{{$city->stores_count}}</span></td> --}}
                     <td><span class="badge @if($city->active) bg-success @else bg-danger @endif">{{$city->active_status}}</span></td>
                     <td>{{$city->created_at}}</td>
                     <td>{{$city->updated_at}}</td>

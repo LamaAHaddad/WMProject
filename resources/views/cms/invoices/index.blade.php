@@ -23,8 +23,11 @@
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
-                    <th>{{__('cms.name')}}</th>
-                    {{-- <th>{{__('cms.active')}}</th> --}}
+                    <th>{{__('cms.product_name')}}</th>
+                    <th>{{__('cms.active')}}</th>
+                    <th>{{__('cms.quality')}}</th>
+                    <th>{{__('cms.price')}}</th>
+                    <th>{{__('cms.total')}}</th>
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
                     <th style="width: 40px">{{__('cms.settings')}}</th>
@@ -35,7 +38,10 @@
                   <tr>
                     <td>{{$invoice->id}}</td>
                     <td>{{$invoice->name}}</td>
-                    {{-- <td><span class="badge @if($invoice->active) bg-success @else bg-danger @endif">{{$invoice->active_status}}</span></td> --}}
+                    <td><span class="badge @if($invoice->active) bg-success @else bg-danger @endif">{{$invoice->active_status}}</span></td>
+                    <td>{{$invoice->quality}}</td>
+                    <td>{{$invoice->price}}</td>
+                    <td>{{$invoice->total}}</td>
                     <td>{{$invoice->created_at}}</td>
                     <td>{{$invoice->updated_at}}</td>
                     <td>

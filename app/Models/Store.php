@@ -8,13 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Store extends Model
 {
     use HasFactory;
-    public function cities(){
+
+    protected $appends = ['city_name'];
+
+    public function getCityNameAttribute()
+    {
+        // return $this->city->name_en;
+        return $this->city()->first()->name;
+    }
+
+    public function city(){
         return $this->belongsTo(City::class,'city_id','id');
     }
-    public function users(){
+    public function user(){
         return $this->hasMany(User::class,'store_id','id');
     }
-    public function invoices(){
+    public function invoice(){
         return $this->hasMany(Invoice::class,'store_id','id');
     }
 }

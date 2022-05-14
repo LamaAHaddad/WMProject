@@ -28,13 +28,21 @@
             @csrf
             <div class="card-body">
               <div class="form-group">
-                <label for="name">{{__('cms.name')}}</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{old('cms.name') ?? $invoice->name}}">
+                <label for="name">{{__('cms.product_name')}}</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.product_name')}}" value="{{old('cms.name') ?? $invoice->name}}">
               </div>
-              {{-- <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+              <div class="form-group">
+                <label for="quality">{{__('cms.quality')}}</label>
+                <input type="number" class="form-control" id="quality" name="quality" placeholder="{{__('cms.quality')}}" value="{{old('cms.quality')}}">
+              </div>
+              <div class="form-group">
+                <label for="price">{{__('cms.price')}}</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="{{__('cms.price')}}" value="{{old('cms.price')}}">
+              </div>
+              <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="active" name="active">
                 <label class="custom-control-label" for="active">{{__('cms.active')}}</label>
-              </div> --}}
+              </div>
             </div>
             <!-- /.card-body -->
 
@@ -59,7 +67,9 @@
    {
     axios.put('/cms/admin/invoices/{{$invoice->id}}', {
        name: document.getElementById('name').value,
-      //  active: document.getElementById('active').toggle,
+       quality: document.getElementById('quality').value,
+       price: document.getElementById('price').value,
+       active: document.getElementById('active').check,
       })
       .then(function (response) {
             console.log(response);

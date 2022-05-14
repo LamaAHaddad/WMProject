@@ -19,7 +19,7 @@ class StoreController extends Controller
     public function index()
     {
         //
-        $stores=Store::with('city')->all();
+        $stores=Store::with('city')->get();
         return response()->view('cms.stores.index', ['stores' => $stores]);
     }
 

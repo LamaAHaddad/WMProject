@@ -32,7 +32,7 @@
                 <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{old('cms.name')}}">
               </div>
               <div class="form-group">
-                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                <div class="custom-control custom-switch ">
                     <input type="checkbox" class="custom-control-input" id="active" name="active">
                     <label class="custom-control-label" for="active">{{__('cms.active')}}</label>
                 </div>
@@ -61,7 +61,7 @@
    {
     axios.post('/cms/admin/cars', {
        name: document.getElementById('name').value,
-       active: document.getElementById('active').value,
+       active: document.getElementById('active').check,
       })
       .then(function (response) {
             console.log(response);

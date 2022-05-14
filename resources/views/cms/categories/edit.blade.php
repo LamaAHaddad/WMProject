@@ -31,10 +31,10 @@
                 <label for="name">{{__('cms.name')}}</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{old('cms.name') ?? $category->name}}">
               </div>
-              {{-- <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+              <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="active" name="active">
                 <label class="custom-control-label" for="active">{{__('cms.active')}}</label>
-              </div> --}}
+              </div>
             </div>
             <!-- /.card-body -->
 
@@ -59,7 +59,7 @@
    {
     axios.put('/cms/admin/categories/{{$category->id}}', {
        name: document.getElementById('name').value,
-      //  active: document.getElementById('active').toggle,
+       active: document.getElementById('active').check,
       })
       .then(function (response) {
             console.log(response);
