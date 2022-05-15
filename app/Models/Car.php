@@ -11,10 +11,11 @@ class Car extends Model
     // public function products(){
     //     return $this->belongsToMany(Product::class,'car_id','id');
     // }
-
-    public function user(){
-        return $this->belongsTo(User::class,'user_id','id');
+    public function users()
+    {
+        return $this->hasMany(User::class, 'car_id', 'id');
     }
+
     public function getActiveStatusAttribute(){
         return $this->active ? 'Active' : ' InActive';
     }

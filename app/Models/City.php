@@ -8,10 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     use HasFactory;
-    public function store(){
-        return $this->hasMany(Store::class,'city_id','id');
+
+    protected $hidden = ['updated_at'];
+
+    protected $casts = [
+        'active' => 'boolean',
+        'created_at' => 'datetime:Y-m-d H:ia'
+    ];
+
+    public function stores()
+    {
+        return $this->hasMany(Store::class, 'city_id', 'id');
     }
-    public function stock(){
+    public function stocks(){
         return $this->hasMany(Stock::class,'city_id','id');
     }
     public function getActiveStatusAttribute(){

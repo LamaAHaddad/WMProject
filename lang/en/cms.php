@@ -15,7 +15,7 @@ return [
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
     'hr'=>'Human Resourse',
-    'quality'=>'Quality',
+    'quantity'=>'Quantity',
     'price'=>'Price',
     'product_name'=>'Product Name',
     'logout'=>'Logout',
@@ -28,6 +28,7 @@ return [
     'current_password'=>'Current Password',
     'permissions'=>'Permissions',
     'total'=>'Total',
+    'mobile'=>'Mobile',
 
     'city'=>'City',
     'cities' => 'Cities',

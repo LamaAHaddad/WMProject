@@ -46,7 +46,7 @@ class CityController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
-            'active' => 'nullable|string|in:on',
+            'active' => 'nullable|boolean',
         ]);
 
         if (!$validator->fails()) {
@@ -100,7 +100,7 @@ class CityController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50,'.$city->id,
-            'active' => 'nullable|string|in:on'
+            'active' => 'nullable|boolean',
         ]);
 
         if(!$validator->fails()){

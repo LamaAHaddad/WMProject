@@ -97,7 +97,6 @@
         })
         .catch(function (error) {
             console.log(error.response);
-            // toastr.error(error.response.data.message);
             showMessage(error.response.data);
         });
   }

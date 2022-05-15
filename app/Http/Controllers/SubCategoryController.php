@@ -45,11 +45,13 @@ class SubCategoryController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
+            'active' => 'nullable|boolean',
         ]);
 
         if (!$validator->fails()) {
             $subCategory = new SubCategory();
             $subCategory->name = $request->input('name');
+            $subCategory->active = $request->has('active');
             $isSaved = $subCategory->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
@@ -97,10 +99,12 @@ class SubCategoryController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50',
+            'active' => 'nullable|boolean',
         ]);
 
         if(!$validator->fails()){
             $subCategory->name=$request->input('name');
+            $subCategory->active = $request->has('active');
             $isSaved=$subCategory->save();
             return response()->json(
                 ['message'=>$isSaved ? 'Updated Successfully' : 'Update Failed!'],

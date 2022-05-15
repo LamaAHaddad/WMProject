@@ -24,7 +24,7 @@
                   <tr>
                     <th style="width: 10px">#</th>
                     <th>{{__('cms.name')}}</th>
-                    {{-- <th>{{__('cms.active')}}</th> --}}
+                    <th>{{__('cms.active')}}</th>
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
                     <th style="width: 40px">{{__('cms.settings')}}</th>
@@ -35,7 +35,7 @@
                   <tr>
                     <td>{{$subCategory->id}}</td>
                     <td>{{$subCategory->name}}</td>
-                    {{-- <td><span class="badge @if($car->active) bg-success @else bg-danger @endif">{{$car->active_status}}</span></td> --}}
+                    <td><span class="badge @if($subCategory->active) bg-success @else bg-danger @endif">{{$subCategory->active_status}}</span></td>
                     <td>{{$subCategory->created_at}}</td>
                     <td>{{$subCategory->updated_at}}</td>
                     <td>

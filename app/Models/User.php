@@ -13,7 +13,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
     
-    public function invoice(){
+    public function invoices(){
         return $this->hasMany(Invoice::class,'user_id','id');
     }
     public function store(){
@@ -25,10 +25,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function stock(){
         return $this->belongsTo(Stock::class,'stock_id','id');
     }
-    public function car(){
-        return $this->hasMany(Car::class,'user_id','id');
+    public function car()
+    {
+        return $this->belongsTo(Car::class, 'car_id', 'id');
     }
-    public function product(){
+    public function products(){
         return $this->hasMany(Product::class,'user_id','id');
     }
 

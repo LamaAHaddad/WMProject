@@ -29,7 +29,7 @@ return new class extends Migration
     {
         Schema::table('stores', function (Blueprint $table) {
             //
-            $table->dropForeign('stores_city_id_foreign');
+            $table->dropForeign('stores_city_id_forign');
             $table->dropColumn('city_id');
         });
     }

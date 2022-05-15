@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class SubCategory extends Model
 {
     use HasFactory;
-    public function category(){
+    public function categories(){
         return $this->hasMany(Category::class,'subcategory_id','id');
+    }
+
+    public function getActiveStatusAttribute(){
+        return $this->active ? 'Active' : ' InActive';
     }
 }

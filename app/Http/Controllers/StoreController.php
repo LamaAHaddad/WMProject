@@ -46,12 +46,14 @@ class StoreController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
+            'mobile'=>'required|numeric',
             'city_id' => 'required|numeric|exists:cities,id',
         ]);
 
         if (!$validator->fails()) {
             $store = new Store();
             $store->name = $request->input('name');
+            $store->mobile=$request->input('mobile');
             $store->city_id = $request->input('city_id');
             $isSaved = $store->save();
             return response()->json([
@@ -101,11 +103,13 @@ class StoreController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50',
+            'mobile'=>'required|numeric',
             'city_id'=>'required|numeric|exists:cities,id',
         ]);
 
         if(!$validator->fails()){
             $store->name=$request->input('name');
+            $store->mobile=$request->input('mobile');
             $store->city_id=$request->input('city_id');
             $isSaved=$store->save();
             return response()->json(
@@ -136,5 +140,6 @@ class StoreController extends Controller
         ],
             $deleted ? Response::HTTP_OK :Response::HTTP_BAD_REQUEST
         );
+
     }
 }

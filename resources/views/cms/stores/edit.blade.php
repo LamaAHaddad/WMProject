@@ -37,12 +37,12 @@
               </div>
               <div class="form-group">
                 <label for="name">{{__('cms.name')}}</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{$user->name}}">
+                <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{$store->name}}">
               </div>
-              {{-- <div class="form-group">
-                <label for="email">{{__('cms.email')}}</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="{{__('cms.email')}}" value="{{$user->email}}">
-              </div> --}}
+              <div class="form-group">
+                <label for="mobile">{{__('cms.mobile')}}</label>
+                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="{{__('cms.mobile')}}" value="{{$store->mobile}}">
+              </div>
             </div>
             <!-- /.card-body -->
 
@@ -67,7 +67,7 @@
    {
     axios.put('/cms/admin/stores/{{$store->id}}', {
        name: document.getElementById('name').value,
-       email_address: document.getElementById('email').value,
+       mobile: document.getElementById('mobile').value,
        city_id: document.getElementById('city_id').value
       })
       .then(function (response) {

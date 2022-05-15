@@ -25,6 +25,7 @@
                     <th style="width: 10px">#</th>
                     <th>{{__('cms.name')}}</th>
                     <th>{{__('cms.city')}}</th>
+                    <th>{{__('cms.mobile')}}</th>
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
                     <th style="width: 40px">{{__('cms.settings')}}</th>
@@ -36,6 +37,7 @@
                     <td>{{$store->id}}</td>
                     <td>{{$store->name}}</td>
                     <td>{{$store->city->name}}</td>
+                    <td>{{$store->mobile}}</td>
                     <td>{{$store->created_at}}</td>
                     <td>{{$store->updated_at}}</td>
                     <td>
@@ -43,9 +45,9 @@
                         <a href="{{route('stores.edit',$store->id)}}" type="button" class="btn btn-warning btn-circle">
                           <i class="fas fa-edit"></i>
                         </a>
-                          <a href="#" onclick="confirmDelete('{{$store->id}}' , this)" class="btn btn-danger btn-circle">
-                            <i class="fas fa-trash"></i>
-                          </a>
+                        <a href="#" onclick="confirmDelete('{{$store->id}}' , this)" class="btn btn-danger btn-circle">
+                          <i class="fas fa-trash"></i>
+                        </a>
                       </div>
                     </td>
                   </tr>
@@ -87,7 +89,7 @@
     })
   }
   function performDelete(id , reference){
-    axios.delete('/cms/store/stores/'+id)
+    axios.delete('/cms/admin/stores/'+id)
       .then(function (response) {
             console.log(response);
             reference.closest('tr').remove();
@@ -95,11 +97,9 @@
         })
         .catch(function (error) {
             console.log(error.response);
-            // toastr.error(error.response.data.message);
             showMessage(error.response.data);
         });
   }
-
   function showMessage(data){
     Swal.fire(
       data.title,

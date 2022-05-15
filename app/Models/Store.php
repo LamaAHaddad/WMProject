@@ -9,21 +9,21 @@ class Store extends Model
 {
     use HasFactory;
 
-    protected $appends = ['city_name'];
+    // protected $appends = ['city_name'];
 
-    public function getCityNameAttribute()
+    // public function getCityNameAttribute()
+    // {
+    //     // return $this->city->name_en;
+    //     return $this->city()->first()->name;
+    // }
+    public function city()
     {
-        // return $this->city->name_en;
-        return $this->city()->first()->name;
+        return $this->belongsTo(City::class, 'city_id', 'id');
     }
-
-    public function city(){
-        return $this->belongsTo(City::class,'city_id','id');
-    }
-    public function user(){
+    public function users(){
         return $this->hasMany(User::class,'store_id','id');
     }
-    public function invoice(){
+    public function invoices(){
         return $this->hasMany(Invoice::class,'store_id','id');
     }
 }

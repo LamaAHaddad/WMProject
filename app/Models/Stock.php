@@ -14,10 +14,10 @@ class Stock extends Model
     public function product(){
         return $this->belongsTo(Product::class,'product_id','id');
     }
-    public function invoice(){
+    public function invoices(){
         return $this->hasMany(Invoice::class,'stock_id','id');
     }
-    public function user(){
+    public function users(){
         return $this->hasMany(User::class,'stock_id','id');
     }
 }

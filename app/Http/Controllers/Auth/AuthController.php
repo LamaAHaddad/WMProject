@@ -56,7 +56,7 @@ class AuthController extends Controller
             ['guard' => 'required|string|in:admin,user']
         );
         if (!$validator->fails()) {
-            // session()->put('guard', $request->guard);
+            session()->put('guard', $request->guard);
             return response()->view('cms.auth.login');
         } else {
             abort(Response::HTTP_NOT_FOUND);
@@ -65,7 +65,6 @@ class AuthController extends Controller
 
     public function login(Request $request){
         $validator = Validator($request->all(), [
-            // 'email' => 'required|email|exists:admins,email',
             'email' => 'required|email',
             'password' => 'required|string|min:3',
             'remember' => 'required|boolean',

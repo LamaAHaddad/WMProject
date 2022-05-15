@@ -32,8 +32,8 @@
                 <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.product_name')}}" value="{{old('cms.name') ?? $invoice->name}}">
               </div>
               <div class="form-group">
-                <label for="quality">{{__('cms.quality')}}</label>
-                <input type="number" class="form-control" id="quality" name="quality" placeholder="{{__('cms.quality')}}" value="{{old('cms.quality')}}">
+                <label for="quantity">{{__('cms.quantity')}}</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="{{__('cms.quantity')}}" value="{{old('cms.quantity')}} ">
               </div>
               <div class="form-group">
                 <label for="price">{{__('cms.price')}}</label>
@@ -67,9 +67,9 @@
    {
     axios.put('/cms/admin/invoices/{{$invoice->id}}', {
        name: document.getElementById('name').value,
-       quality: document.getElementById('quality').value,
+       quantity: document.getElementById('quantity').value,
        price: document.getElementById('price').value,
-       active: document.getElementById('active').check,
+       active: document.getElementById('active').checked,
       })
       .then(function (response) {
             console.log(response);

@@ -61,7 +61,7 @@
    {
     axios.put('/cms/admin/cars/{{$car->id}}', {
        name: document.getElementById('name').value,
-       active: document.getElementById('active').check,
+       active: document.getElementById('active').checked,
       })
       .then(function (response) {
             console.log(response);

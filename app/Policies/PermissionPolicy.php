@@ -20,6 +20,7 @@ class PermissionPolicy
     public function viewAny(Admin $admin)
     {
         //
+        return $this->allow();
         return $admin->hasPermissionTo('Read-Permissions')
         ? $this->allow() : $this->deny();
     }

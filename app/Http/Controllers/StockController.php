@@ -19,8 +19,6 @@ class StockController extends Controller
     public function index()
     {
         //
-        // $stock = Stock::all();
-        // return response()->view('cms.stocks.index',['stock'=>$stock]);
         $stocks = Stock::all();
         return response()->view('cms.stocks.index',['stocks'=>$stocks]);
     }

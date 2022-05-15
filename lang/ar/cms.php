@@ -15,7 +15,7 @@ return [
     'created_at' => 'تم انشاؤه في',
     'updated_at' => 'تم التحديث في',
     'hr'=>'الموارد البشرية',
-    'quality'=>'الكمية',
+    'quantity'=>'الكمية',
     'price'=>'السعر',
     'product_name'=>'اسم الصنف',
     'logout'=>'خروج',
@@ -28,6 +28,7 @@ return [
     'current_password'=>'كلمة السر الحالية',
     'permissions'=>'أذونات',
     'total'=>'الاجمالي',
+    'mobile'=>'الجوال',
 
     'city'=>'المدينة',
     'cities' => 'المدن',

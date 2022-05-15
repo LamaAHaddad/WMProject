@@ -19,7 +19,7 @@ class CarController extends Controller
     public function index()
     {
         //
-        $cars = Car::all();
+        $cars=Car::withCount('users')->get();
         return response()->view('cms.cars.index',['cars'=>$cars]);
     }
 
@@ -45,7 +45,7 @@ class CarController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
-            'active' => 'nullable|string|in:on',
+            'active' => 'nullable|boolean',
         ]);
 
         if (!$validator->fails()) {
@@ -99,7 +99,7 @@ class CarController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50,'.$car->id,
-            'active' => 'nullable|string|in:on'
+            'active' => 'nullable|boolean',
         ]);
 
         if(!$validator->fails()){

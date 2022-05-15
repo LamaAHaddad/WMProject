@@ -161,7 +161,7 @@ class UserController extends Controller
         if(!$validator->fails()){
             $user->name=$request->input('name');
             $user->email=$request->input('email_address');
-            $user->city_id=$request->input('car_id');
+            $user->car_id=$request->input('car_id');
             $isSaved=$user->save();
             return response()->json(
                 ['message'=>$isSaved ? 'Updated Successfully' : 'Update Failed!'],

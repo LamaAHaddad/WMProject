@@ -66,9 +66,9 @@
    function performUpdate()
    {
     axios.put('/cms/admin/users/{{$user->id}}', {
-       name: document.getElementById('name').value,
-       email_address: document.getElementById('email').value,
-       car_id: document.getElementById('car_id').value
+      name: document.getElementById('name').value,
+      email_address: document.getElementById('email').value,
+      car_id: document.getElementById('car_id').value
       })
       .then(function (response) {
             console.log(response);

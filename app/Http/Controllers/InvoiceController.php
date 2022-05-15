@@ -45,11 +45,17 @@ class InvoiceController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
+            'active' => 'nullable|boolean',
+            'quantity'=>'required|numeric',
+            'price'=>'required|numeric',
         ]);
 
         if (!$validator->fails()) {
             $invoice = new Invoice();
             $invoice->name = $request->input('name');
+            $invoice->active = $request->has('active');
+            $invoice->quantity= $request->input('quantity');
+            $invoice->price = $request->input('price');
             $isSaved = $invoice->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
@@ -97,10 +103,16 @@ class InvoiceController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50',
+            'active' => 'nullable|boolean',
+            'quantity'=>'required|numeric',
+            'price'=>'required|numeric',
         ]);
 
         if(!$validator->fails()){
             $invoice->name=$request->input('name');
+            $invoice->active = $request->has('active');
+            $invoice->quantity= $request->input('quantity');
+            $invoice->price = $request->input('price');
             $isSaved=$invoice->save();
             return response()->json(
                 ['message'=>$isSaved ? 'Updated Successfully' : 'Update Failed!'],

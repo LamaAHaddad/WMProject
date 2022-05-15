@@ -45,11 +45,13 @@ class CategoryController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
+            'active' => 'nullable|boolean',
         ]);
 
         if (!$validator->fails()) {
             $category = new Category();
             $category->name = $request->input('name');
+            $category->active = $request->has('active');
             $isSaved = $category->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
@@ -97,10 +99,12 @@ class CategoryController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50',
+            'active' => 'nullable|boolean',
         ]);
 
         if(!$validator->fails()){
             $category->name=$request->input('name');
+            $category->active = $request->has('active');
             $isSaved=$category->save();
             return response()->json(
                 ['message'=>$isSaved ? 'Updated Successfully' : 'Update Failed!'],

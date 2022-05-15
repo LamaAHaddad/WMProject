@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',45);
             $table->boolean('active')->default(true);
-            $table->integer('quality');
+            $table->integer('quantity');
             $table->integer('price');
             $table->timestamps();
         });

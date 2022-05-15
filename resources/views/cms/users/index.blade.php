@@ -38,7 +38,7 @@
                     <td>{{$user->id}}</td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
-                    <td>{{$user->car->name}}</td>
+                    <td>{{$user->car->name ?? ''}}</td>
                     <td>
                       <a href="{{route('user.edit-permissions',$user->id)}}" class="btn btn-app bg-info">
                         <i class="fas fa-envelope"></i> {{$user->permissions_count}}
