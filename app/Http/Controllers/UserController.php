@@ -95,6 +95,7 @@ class UserController extends Controller
             'name' => 'required|string|min:3',
             'email_address' => 'required|email|unique:users,email',
             'car_id' => 'required|numeric|exists:cars,id',
+            'mobile'=>'required|numeric',
         ]);
 
         if (!$validator->fails()) {
@@ -103,6 +104,7 @@ class UserController extends Controller
             $user->email = $request->input('email_address');
             $user->password = Hash::make('password');
             $user->car_id = $request->input('car_id');
+            $user->mobile=$request->input('mobile');
             $isSaved = $user->save();
             if($isSaved){
                 Mail::to($user)->send(new UserWelcomEmail($user));
@@ -156,12 +158,15 @@ class UserController extends Controller
             'name'=>'required|string|min:3|max:50',
             'email_address'=>'required|email|max:40|unique:users,email,'.$user->id,
             'car_id'=>'required|numeric|exists:cars,id',
+            'mobile'=>'required|numeric',
+            
         ]);
 
         if(!$validator->fails()){
             $user->name=$request->input('name');
             $user->email=$request->input('email_address');
             $user->car_id=$request->input('car_id');
+            $user->mobile=$request->input('mobile');
             $isSaved=$user->save();
             return response()->json(
                 ['message'=>$isSaved ? 'Updated Successfully' : 'Update Failed!'],

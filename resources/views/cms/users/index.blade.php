@@ -25,6 +25,7 @@
                     <th style="width: 10px">#</th>
                     <th>{{__('cms.name')}}</th>
                     <th>{{__('cms.email')}}</th>
+                    <th>{{__('cms.mobile')}}</th>
                     <th>{{__('cms.car')}}</th>
                     <th>{{__('cms.permissions')}}</th>
                     <th>{{__('cms.created_at')}}</th>
@@ -38,6 +39,7 @@
                     <td>{{$user->id}}</td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
+                    <td>{{$user->mobile}}</td>
                     <td>{{$user->car->name ?? ''}}</td>
                     <td>
                       <a href="{{route('user.edit-permissions',$user->id)}}" class="btn btn-app bg-info">

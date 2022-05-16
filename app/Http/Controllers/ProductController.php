@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,7 +20,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $products = Product::all();
+        $products=Product::with('stock')->get();
         return response()->view('cms.products.index',['products'=>$products]);
     }
 
@@ -31,7 +32,8 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return response()->view('cms.products.create');
+        $stocks=Stock::all();
+        return response()->view('cms.products.create',['stocks'=>$stocks]);
     }
 
     /**
@@ -45,11 +47,17 @@ class ProductController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
+            'stock_id' => 'required|numeric|exists:stocks,id',
+            'quantity'=>'required|numeric',
+            'price'=>'required|numeric',
         ]);
 
         if (!$validator->fails()) {
             $product = new Product();
             $product->name = $request->input('name');
+            $product->stock_id = $request->input('stock_id');
+            $product->quantity= $request->input('quantity');
+            $product->price = $request->input('price');
             $isSaved = $product->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
@@ -82,7 +90,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
-        return response()->view('cms.products.edit',['product' => $product]);
+        $stocks=Stock::all();
+        return response()->view('cms.products.edit',['product'=>$product, 'stocks'=>$stocks]);
     }
 
     /**
@@ -97,10 +106,16 @@ class ProductController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50',
+            'stock_id' => 'required|numeric|exists:stocks,id',
+            'quantity'=>'required|numeric',
+            'price'=>'required|numeric',
         ]);
 
         if(!$validator->fails()){
             $product->name=$request->input('name');
+            $product->stock_id = $request->input('stock_id');
+            $product->quantity= $request->input('quantity');
+            $product->price = $request->input('price');
             $isSaved=$product->save();
             return response()->json(
                 ['message'=>$isSaved ? 'Updated Successfully' : 'Update Failed!'],

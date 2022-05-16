@@ -25,14 +25,6 @@
     <div class="card-body">
       <p class="login-box-msg">You are only one step a way from your account activation, activate your account now.</p>
       <form>
-        {{-- <div class="input-group mb-3">
-          <input type="password" id="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div> --}}
         <div class="row">
           <div class="col-12">
             <button type="button" onclick="performSendEmailVerification()" class="btn btn-primary btn-block">Send Activation Email</button>

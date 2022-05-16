@@ -29,15 +29,15 @@
             <div class="card-body">
               <div class="form-group">
                 <label for="name">{{__('cms.product_name')}}</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.product_name')}}" value="{{old('cms.name') ?? $invoice->name}}">
+                <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.product_name')}}" value="{{$invoice->name}}">
               </div>
               <div class="form-group">
                 <label for="quantity">{{__('cms.quantity')}}</label>
-                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="{{__('cms.quantity')}}" value="{{old('cms.quantity')}} ">
+                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="{{__('cms.quantity')}}" value="{{$invoice->quantity}}">
               </div>
               <div class="form-group">
                 <label for="price">{{__('cms.price')}}</label>
-                <input type="number" class="form-control" id="price" name="price" placeholder="{{__('cms.price')}}" value="{{old('cms.price')}}">
+                <input type="number" class="form-control" id="price" name="price" placeholder="{{__('cms.price')}}" value="{{$invoice->price}}">
               </div>
               <div class="custom-control custom-switch">
                 <input type="checkbox" class="custom-control-input" id="active" name="active">

@@ -25,7 +25,6 @@
                     <th style="width: 10px">#</th>
                     <th>{{__('cms.name')}}</th>
                     <th>{{__('cms.user_type')}}</th>
-                    {{-- <th>{{__('cms.active')}}</th> --}}
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
                   </tr>
@@ -36,7 +35,6 @@
                     <td>{{$permission->id}}</td>
                     <td>{{$permission->name}}</td>
                     <td><span class="badge bg-success">{{$permission->guard_name}}</span></td>
-                    {{-- <td><span class="badge @if($permission->active) bg-success @else bg-danger @endif">{{$permission->active_status}}</span></td> --}}
                     <td>{{$permission->created_at}}</td>
                     <td>{{$permission->updated_at}}</td>
                   </tr>

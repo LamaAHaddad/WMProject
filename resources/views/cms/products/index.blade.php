@@ -24,6 +24,9 @@
                   <tr>
                     <th style="width: 10px">#</th>
                     <th>{{__('cms.name')}}</th>
+                    <th>{{__('cms.quantity')}}</th>
+                    <th>{{__('cms.price')}}</th>
+                    <th>{{__('cms.stock')}}</th>
                     {{-- <th>{{__('cms.active')}}</th> --}}
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
@@ -35,6 +38,9 @@
                   <tr>
                     <td>{{$product->id}}</td>
                     <td>{{$product->name}}</td>
+                    <td>{{$product->quantity}}</td>
+                    <td>{{$product->price}}</td>
+                    <td>{{$product->stock->name ?? ''}}</td>
                     {{-- <td><span class="badge @if($car->active) bg-success @else bg-danger @endif">{{$car->active_status}}</span></td> --}}
                     <td>{{$product->created_at}}</td>
                     <td>{{$product->updated_at}}</td>

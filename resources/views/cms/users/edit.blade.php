@@ -43,6 +43,10 @@
                 <label for="email">{{__('cms.email')}}</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="{{__('cms.email')}}" value="{{$user->email}}">
               </div>
+              <div class="form-group">
+                <label for="mobile">{{__('cms.mobile')}}</label>
+                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="{{__('cms.mobile')}}" value="{{$user->mobile}}">
+              </div>
             </div>
             <!-- /.card-body -->
 
@@ -68,6 +72,7 @@
     axios.put('/cms/admin/users/{{$user->id}}', {
       name: document.getElementById('name').value,
       email_address: document.getElementById('email').value,
+      mobile: document.getElementById('mobile').value,
       car_id: document.getElementById('car_id').value
       })
       .then(function (response) {

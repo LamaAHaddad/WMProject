@@ -48,7 +48,6 @@ Route::prefix('cms/')->middleware('guest:admin,user')->group(function () {
 });
 
 Route::prefix('cms/admin')->middleware(['auth:admin,user', 'verified'])->group(function () {
-    // Route::prefix('cms/admin')->group(function () {
     Route::view('/', 'cms.temp')->name('cms.dashboard');
     Route::resource('cities', CityController::class);
     Route::resource('users',UserController::class);
@@ -63,12 +62,7 @@ Route::prefix('cms/admin')->middleware(['auth:admin,user', 'verified'])->group(f
     Route::get('logout',[AuthController::class,'logout'])->name('cms.logout');
 });
 
-// Route::prefix('cms/admin')->middleware(['auth:admin', 'verified'])->group(function () {
-//     Route::get('logout',[AuthController::class,'logout'])->name('cms.logout');
-// });
-
 Route::prefix('cms/admin')->middleware(['auth:admin', 'verified'])->group(function () {
-    // Route::prefix('cms/admin')->group(function () {
     Route::resource('admins',AdminController::class);
     Route::resource('roles',RoleController::class);
     Route::resource('permissions',PermissionController::class);

@@ -31,7 +31,7 @@
                 <label>{{__('cms.user_type')}}</label>
                 <select class="form-control" id="guard_name">
                   <option value="admin">{{__('cms.admin')}}</option>
-                  <option value="user">{{__('cms.store')}}</option>
+                  <option value="user">{{__('cms.distributor')}}</option>
                 </select>
               </div>
               <div class="form-group">

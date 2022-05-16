@@ -1,4 +1,4 @@
-php artisan migrate<?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('stores', function (Blueprint $table) {
+        Schema::table('stocks', function (Blueprint $table) {
             //
             $table->foreignId('city_id')->constrained();
-
         });
     }
 
@@ -27,9 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('stores', function (Blueprint $table) {
+        Schema::table('stocks', function (Blueprint $table) {
             //
-            $table->dropForeign('stores_city_id_forign');
+            $table->dropForeign('stocks_city_id_forign');
             $table->dropColumn('city_id');
         });
     }

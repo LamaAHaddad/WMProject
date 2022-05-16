@@ -27,14 +27,14 @@
           <form id="create-form">
             @csrf
             <div class="card-body">
-              {{-- <div class="form-group">
+              <div class="form-group">
                 <label>{{__('cms.city')}}</label>
                 <select class="form-control" id="city_id">
-                  @foreach ($cities as $city )
+                  @foreach ($cities as $city)
                   <option value="{{$city->id}}">{{$city->name}}</option>
                   @endforeach
                 </select>
-              </div> --}}
+              </div>
               <div class="form-group">
                 <label for="name">{{__('cms.name')}}</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{old('cms.name')}}">
@@ -63,7 +63,7 @@
    {
     axios.post('/cms/admin/stocks', {
        name: document.getElementById('name').value,
-      //  city_id: document.getElementById('city_id').value
+       city_id: document.getElementById('city_id').value
       })
       .then(function (response) {
             console.log(response);

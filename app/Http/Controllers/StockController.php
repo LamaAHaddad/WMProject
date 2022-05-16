@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ class StockController extends Controller
     public function index()
     {
         //
-        $stocks = Stock::all();
+        $stocks=Stock::with('city')->get();
         return response()->view('cms.stocks.index',['stocks'=>$stocks]);
     }
 
@@ -31,7 +32,8 @@ class StockController extends Controller
     public function create()
     {
         //
-        return response()->view('cms.stocks.create');
+        $cities=City::where('active','=',true)->get();
+        return response()->view('cms.stocks.create',['cities'=>$cities]);
     }
 
     /**
@@ -45,11 +47,13 @@ class StockController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
+            'city_id' => 'required|numeric|exists:cities,id',
         ]);
 
         if (!$validator->fails()) {
             $stock = new Stock();
-            $stock ->name = $request->input('name');
+            $stock->name = $request->input('name');
+            $stock->city_id = $request->input('city_id');
             $isSaved = $stock ->save();
             return response()->json([
                 'message' => $isSaved ? 'Saved successfully' : 'Save failed!'
@@ -82,7 +86,8 @@ class StockController extends Controller
     public function edit(Stock $stock)
     {
         //
-        return response()->view('cms.stocks.edit',['stock' => $stock ]);
+        $cities = City::where('active', '=', true)->get();
+        return response()->view('cms.stocks.edit', ['stock' => $stock, 'cities' => $cities]);
     }
 
     /**
@@ -97,10 +102,12 @@ class StockController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50',
+            'city_id' => 'required|numeric|exists:cities,id',
         ]);
 
         if(!$validator->fails()){
             $stock ->name=$request->input('name');
+            $stock->city_id = $request->input('city_id');
             $isSaved=$stock ->save();
             return response()->json(
                 ['message'=>$isSaved ? 'Updated Successfully' : 'Update Failed!'],

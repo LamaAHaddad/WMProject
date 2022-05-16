@@ -12,7 +12,7 @@ class Stock extends Model
         return $this->belongsTo(City::class,'city_id','id');
     }
     public function product(){
-        return $this->belongsTo(Product::class,'product_id','id');
+        return $this->hasMany(Product::class,'stock_id','id');
     }
     public function invoices(){
         return $this->hasMany(Invoice::class,'stock_id','id');

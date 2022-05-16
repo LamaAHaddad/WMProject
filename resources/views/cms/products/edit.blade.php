@@ -28,8 +28,24 @@
             @csrf
             <div class="card-body">
               <div class="form-group">
-                <label for="name">{{__('cms.name')}}</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{old('cms.name') ?? $product->name}}">
+                <label>{{__('cms.stock')}}</label>
+                <select class="form-control" id="stock_id">
+                  @foreach ($stocks as $stock)
+                  <option value="{{$stock->id}}">{{$stock->name}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="name">{{__('cms.product_name')}}</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.product_name')}}" value="{{$product->name}}">
+              </div>
+              <div class="form-group">
+                <label for="quantity">{{__('cms.quantity')}}</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="{{__('cms.quantity')}}" value="{{$product->quantity}}">
+              </div>
+              <div class="form-group">
+                <label for="price">{{__('cms.price')}}</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="{{__('cms.price')}}" value="{{$product->price}}">
               </div>
               {{-- <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                 <input type="checkbox" class="custom-control-input" id="active" name="active">
@@ -55,22 +71,24 @@
 @section('scripts')
 <script src="{{asset('cms/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <script>
-   function performUpdate(id)
-   {
-    axios.put('/cms/admin/products/{{$product->id}}', {
-       name: document.getElementById('name').value,
-      //  email_address: document.getElementById('email').value,
-      //  city_id: document.getElementById('city_id').value
-      })
-      .then(function (response) {
-            console.log(response);
-            toastr.success(response.data.message);
-            window.location.href = '/cms/admin/products';
-        })
-        .catch(function (error) {
-            console.log(error.response);
-            toastr.error(error.response.data.message);
-        });
-      }
+  function performUpdate(id)
+  {
+   axios.put('/cms/admin/products/{{$product->id}}', {
+      name: document.getElementById('name').value,
+      quantity: document.getElementById('quantity').value,
+      price: document.getElementById('price').value,
+      stock_id: document.getElementById('stock_id').value,
+      // active: document.getElementById('active').checked,
+     })
+     .then(function (response) {
+           console.log(response);
+           toastr.success(response.data.message);
+           window.location.href = '/cms/admin/products';
+       })
+       .catch(function (error) {
+           console.log(error.response);
+           toastr.error(error.response.data.message);
+       });
+   }
 </script>
 @endsection
