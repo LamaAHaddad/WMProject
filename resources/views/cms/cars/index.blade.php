@@ -24,6 +24,8 @@
                   <tr>
                     <th style="width: 10px">#</th>
                     <th>{{__('cms.name')}}</th>
+                    <th>{{__('cms.color')}}</th>
+                    <th>{{__('cms.number_car')}}</th>
                     <th>{{__('cms.active')}}</th>
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
@@ -35,6 +37,8 @@
                   <tr>
                     <td>{{$car->id}}</td>
                     <td>{{$car->name}}</td>
+                    <td>{{$car->color}}</td>
+                    <td>{{$car->number_car}}</td>
                     <td><span class="badge @if($car->active) bg-success @else bg-danger @endif">{{$car->active_status}}</span></td>
                     <td>{{$car->created_at}}</td>
                     <td>{{$car->updated_at}}</td>

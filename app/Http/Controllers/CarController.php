@@ -45,12 +45,16 @@ class CarController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
+            'color' => 'required|string|min:3',
+            'number_car' => 'required|numeric',
             'active' => 'nullable|boolean',
         ]);
 
         if (!$validator->fails()) {
             $car = new Car();
             $car->name = $request->input('name');
+            $car->color = $request->input('color');
+            $car->number_car = $request->input('number_car');
             $car->active = $request->has('active');
             $isSaved = $car->save();
             return response()->json([
@@ -99,11 +103,15 @@ class CarController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50,'.$car->id,
+            'color' => 'required|string|min:3',
+            'number_car' => 'required|numeric',
             'active' => 'nullable|boolean',
         ]);
 
         if(!$validator->fails()){
             $car->name=$request->input('name');
+            $car->color = $request->input('color');
+            $car->number_car = $request->input('number_car');
             $car->active = $request->has('active');
             $isSaved=$car->save();
             return response()->json(

@@ -29,6 +29,8 @@ return [
     'permissions'=>'Permissions',
     'total'=>'Total',
     'mobile'=>'Mobile',
+    'color'=>'Color',
+    'number_car'=>'Number Car',
 
     'city'=>'City',
     'cities' => 'Cities',

@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->string('name',45);
+            $table->string('color');
+            $table->integer('number_car');
             $table->boolean('active')->default(true);
             // $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             // $table->foreignId('user_id')->constrained()->cascadeOnDelete();

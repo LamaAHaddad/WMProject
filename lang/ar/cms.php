@@ -29,6 +29,8 @@ return [
     'permissions'=>'أذونات',
     'total'=>'الاجمالي',
     'mobile'=>'الجوال',
+    'color'=>'اللون',
+    'number_car'=>'رقم السيارة',
 
     'city'=>'المدينة',
     'cities' => 'المدن',

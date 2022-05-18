@@ -32,6 +32,14 @@
                 <input type="text" class="form-control" id="name" name="name" placeholder="{{__('cms.name')}}" value="{{old('cms.name')}}">
               </div>
               <div class="form-group">
+                <label for="color">{{__('cms.color')}}</label>
+                <input type="text" class="form-control" id="color" name="color" placeholder="{{__('cms.color')}}" value="{{old('cms.color')}}">
+              </div>
+              <div class="form-group">
+                <label for="number_car">{{__('cms.number_car')}}</label>
+                <input type="number" class="form-control" id="number_car" name="number_car" placeholder="{{__('cms.number_car')}}" value="{{old('cms.number_car')}}">
+              </div>
+              <div class="form-group">
                 <div class="custom-control custom-switch ">
                     <input type="checkbox" class="custom-control-input" id="active" name="active">
                     <label class="custom-control-label" for="active">{{__('cms.active')}}</label>
@@ -61,6 +69,8 @@
    {
     axios.post('/cms/admin/cars', {
        name: document.getElementById('name').value,
+       color: document.getElementById('color').value,
+       number_car: document.getElementById('number_car').value,
        active: document.getElementById('active').checked,
       })
       .then(function (response) {
