@@ -31,6 +31,7 @@ return [
     'mobile'=>'Mobile',
     'color'=>'Color',
     'number_car'=>'Number Car',
+    'location'=>'Location',
 
     'city'=>'City',
     'cities' => 'Cities',
@@ -52,8 +53,8 @@ return [
     'create_stock'=>'Create Stock',
     'edit_stock'=>'Edit Stock',
 
-    'car'=>'Car',
-    'cars'=>'Cars',
+    'car'=>'Car Distributors',
+    'cars'=>'Cars Distributors',
     'create_car'=>'Create Car',
     'edit_car'=>'Edit Car',
 

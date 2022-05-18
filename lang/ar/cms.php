@@ -31,6 +31,7 @@ return [
     'mobile'=>'الجوال',
     'color'=>'اللون',
     'number_car'=>'رقم السيارة',
+    'location'=>'الموقع',
 
     'city'=>'المدينة',
     'cities' => 'المدن',

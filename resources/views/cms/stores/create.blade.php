@@ -1,9 +1,9 @@
 @extends('cms.parent')
 
 @section('title',__('cms.stores'))
-@section('page-lg',__('cms.edit'))
+@section('page-lg',__('cms.create'))
 @section('main-pg-md',__('cms.stores'))
-@section('page-md',__('cms.edit'))
+@section('page-md',__('cms.create'))
 
 @section('styles')
   
@@ -20,7 +20,7 @@
         <!-- general form elements -->
         <div class="card card-primary">
           <div class="card-header">
-            <h3 class="card-title">{{__('cms.edit_store')}}</h3>
+            <h3 class="card-title">{{__('cms.create_store')}}</h3>
           </div>
           <!-- /.card-header -->
           <!-- form start -->
@@ -42,6 +42,10 @@
               <div class="form-group">
                 <label for="mobile">{{__('cms.mobile')}}</label>
                 <input type="text" class="form-control" id="mobile" name="mobile" placeholder="{{__('cms.mobile')}}" value="{{old('cms.mobile')}}">
+              </div>
+              <div class="form-group">
+                <label for="location">{{__('cms.location')}}</label>
+                <input type="text" class="form-control" id="location" name="location" placeholder="{{__('cms.location')}}" value="{{old('cms.location')}}">
               </div>
             </div>
             <!-- /.card-body -->
@@ -66,9 +70,10 @@
    function performStore()
    {
     axios.post('/cms/admin/stores', {
-       name: document.getElementById('name').value,
-       mobile: document.getElementById('mobile').value,
-       city_id: document.getElementById('city_id').value,
+       name:document.getElementById('name').value,
+       location:document.getElementById('location').value,
+       mobile:document.getElementById('mobile').value,
+       city_id:document.getElementById('city_id').value,
       })
       .then(function (response) {
             console.log(response);

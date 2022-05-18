@@ -26,6 +26,7 @@
                     <th>{{__('cms.name')}}</th>
                     <th>{{__('cms.city')}}</th>
                     <th>{{__('cms.mobile')}}</th>
+                    <th>{{__('cms.location')}}</th>
                     <th>{{__('cms.created_at')}}</th>
                     <th>{{__('cms.updated_at')}}</th>
                     <th style="width: 40px">{{__('cms.settings')}}</th>
@@ -38,6 +39,7 @@
                     <td>{{$store->name}}</td>
                     <td>{{$store->city->name}}</td>
                     <td>{{$store->mobile}}</td>
+                    <td>{{$store->location}}</td>
                     <td>{{$store->created_at}}</td>
                     <td>{{$store->updated_at}}</td>
                     <td>

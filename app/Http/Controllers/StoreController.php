@@ -46,6 +46,7 @@ class StoreController extends Controller
         //
         $validator = Validator($request->all(), [
             'name' => 'required|string|min:3',
+            'name' => 'required|string|min:3',
             'mobile'=>'required|numeric',
             'city_id' => 'required|numeric|exists:cities,id',
         ]);
@@ -53,6 +54,7 @@ class StoreController extends Controller
         if (!$validator->fails()) {
             $store = new Store();
             $store->name = $request->input('name');
+            $store->location=$request->input('location');
             $store->mobile=$request->input('mobile');
             $store->city_id = $request->input('city_id');
             $isSaved = $store->save();
@@ -103,12 +105,14 @@ class StoreController extends Controller
         //
         $validator = Validator($request->all(),[
             'name'=>'required|string|min:3|max:50',
+            'name' => 'required|string|min:3',
             'mobile'=>'required|numeric',
             'city_id'=>'required|numeric|exists:cities,id',
         ]);
 
         if(!$validator->fails()){
             $store->name=$request->input('name');
+            $store->location=$request->input('location');
             $store->mobile=$request->input('mobile');
             $store->city_id=$request->input('city_id');
             $isSaved=$store->save();

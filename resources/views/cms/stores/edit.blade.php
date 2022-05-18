@@ -43,6 +43,10 @@
                 <label for="mobile">{{__('cms.mobile')}}</label>
                 <input type="text" class="form-control" id="mobile" name="mobile" placeholder="{{__('cms.mobile')}}" value="{{$store->mobile}}">
               </div>
+              <div class="form-group">
+                <label for="location">{{__('cms.location')}}</label>
+                <input type="text" class="form-control" id="location" name="location" placeholder="{{__('cms.location')}}" value="{{$store->location}}">
+              </div>
             </div>
             <!-- /.card-body -->
 
@@ -67,6 +71,7 @@
    {
     axios.put('/cms/admin/stores/{{$store->id}}', {
        name: document.getElementById('name').value,
+       location:document.getElementById('location').value,
        mobile: document.getElementById('mobile').value,
        city_id: document.getElementById('city_id').value
       })
