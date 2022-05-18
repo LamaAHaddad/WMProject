@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\UserWelcomEmail;
 use App\Models\Car;
-use App\Models\City;
 use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
@@ -31,21 +30,21 @@ class UserController extends Controller
     public function editUserPermissions(Request $request,User $user){
         $permissions = Permission::where('guard_name', '=' , $user->guard_name)->get();
 
-        $rolePermissions = $user->permissions;
-        if (count($rolePermissions) > 0) {
+        $userPermissions = $user->permissions;
+        // if (count($userPermissions) > 0) {
             foreach ($permissions as $permission) {
                 $permission->setAttribute('assigned', false);
-                foreach ($rolePermissions as $rolePermission) {
-                    if ($permission->id == $rolePermission->id) {
+                foreach ($userPermissions as $userPermission) {
+                    if ($permission->id == $userPermission->id) {
                         $permission->setAttribute('assigned', true);
                     }
                 }
-            }
+            // }
         }
-        return response()->view('cms.users.user-permission', ['user'=>$user, 'permissions'=>$permissions]);
+        return response()->view('cms.users.user-permission', [ 'permissions'=>$permissions,'user'=>$user]);
     }
 
-    public function updateRolePermissions(Request $request,User $user){
+    public function updateUserPermissions(Request $request,User $user){
         $validator = Validator($request->all(),[
             'permission_id'=>'required|numeric|exists:permissions,id',
         ]);
