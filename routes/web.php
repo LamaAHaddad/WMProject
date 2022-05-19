@@ -72,7 +72,7 @@ Route::prefix('cms/admin')->middleware(['auth:admin,user','verified'])->group(fu
     Route::get('roles/{role}/permissions/edit',[RoleController::class, 'editRolePermissions'])->name('roles.edit-permissions');
     Route::put('roles/{role}/permissions/edit',[RoleController::class, 'updateRolePermissions']);
 
-    Route::get('users/{user}/permissions/edit',[UserController::class, 'editUserPermissions'])->name('user.edit-permissions');
+    Route::get('users/{user}/permissions/edit',[UserController::class, 'editUserPermissions'])->name('users.edit-permissions');
     Route::put('users/{user}/permissions/edit',[UserController::class, 'updateUserPermissions']);
 
     Route::get('edit-password',[AuthController::class,'editPassword'])->name('password.edit');

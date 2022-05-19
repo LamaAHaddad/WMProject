@@ -248,8 +248,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @endcanany
           @endcanany
 
-          @canany(['Create-User', 'Read-Users','Create-Admin', 
-          'Read-Admins','Create-Store', 'Read-Stores'])
+          @canany(['Create-User', 'Read-Users',
+          'Create-Admin','Read-Admins',
+          'Create-Store', 'Read-Stores'])
           <li class="nav-header">{{__('cms.hr')}}</li>
           @canany(['Create-User', 'Read-Users'])
           <li class="nav-item">

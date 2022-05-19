@@ -63,7 +63,7 @@
 @section('scripts')
 <script>
 function performUpdate(permissionId) {
-  console.log('TEST');
+  // console.log('TEST');
   axios.put('/cms/admin/users/{{$user->id}}/permissions/edit', {
     permission_id: permissionId
   })

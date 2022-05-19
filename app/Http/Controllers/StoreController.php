@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class StoreController extends Controller
 {
+    public function __construct(){
+        $this->authorizeResource(Store::class,'store');
+    }
     /**
      * Display a listing of the resource.
      *

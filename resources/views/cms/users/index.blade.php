@@ -42,7 +42,7 @@
                     <td>{{$user->mobile}}</td>
                     <td>{{$user->car->name ?? ''}}</td>
                     <td>
-                      <a href="{{route('user.edit-permissions',$user->id)}}" class="btn btn-app bg-info">
+                      <a href="{{route('users.edit-permissions',$user->id)}}" class="btn btn-app bg-info">
                         <i class="fas fa-envelope"></i> {{$user->permissions_count}}
                     </a>
                     </td>
