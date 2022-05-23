@@ -28,10 +28,10 @@ class UserController extends Controller
     }
 
     public function editUserPermissions(Request $request,User $user){
-        $permissions = Permission::where('guard_name', '=' , $user->guard_name)->get();
+        $permissions = Permission::where('guard_name', '=' , 'user')->get();
 
         $userPermissions = $user->permissions;
-        // if (count($userPermissions) > 0) {
+        if (count($userPermissions) > 0) {
             foreach ($permissions as $permission) {
                 $permission->setAttribute('assigned', false);
                 foreach ($userPermissions as $userPermission) {
@@ -39,9 +39,9 @@ class UserController extends Controller
                         $permission->setAttribute('assigned', true);
                     }
                 }
-            // }
+            }
         }
-        return response()->view('cms.users.user-permission', [ 'permissions'=>$permissions,'user'=>$user]);
+        return response()->view('cms.users.user-permission', ['user'=>$user, 'permissions'=>$permissions]);
     }
 
     public function updateUserPermissions(Request $request,User $user){
@@ -58,7 +58,7 @@ class UserController extends Controller
                 $user->givePermissionTo($permission);
             }
             return response()->json(
-                ['message'=>'User Updated Successfully'],
+                ['message'=>'Permission Updated Successfully'],
                 Response::HTTP_OK
             );
         }else{
