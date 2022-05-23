@@ -101,7 +101,7 @@ class UserController extends Controller
             $user = new User();
             $user->name = $request->input('name');
             $user->email = $request->input('email_address');
-            $user->password = Hash::make('password');
+            $user->password = Hash::make(123456);
             $user->car_id = $request->input('car_id');
             $user->mobile=$request->input('mobile');
             $isSaved = $user->save();
